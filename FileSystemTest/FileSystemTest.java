@@ -13,6 +13,7 @@ public class FileSystemTest {
                 fileStore -> detail(fileSystem, fileStore)
             );
     }
+
     private static void detail(FileSystem fileSystem, FileStore fileStore) {
         try {
             System.out.println("----------------------------------------");
