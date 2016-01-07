@@ -9,3 +9,6 @@
 */target/
 */testdb/
 
+# VisualStudio
+**/bin/
+**/obj/
