@@ -22,8 +22,9 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Unit test for simple App.
+ * see -> http://www.mybatis.org/mybatis-3/ja/getting-started.html
  */
-public class AppTest {
+public class AppTest_スタートガイド {
     private SqlSessionFactory sqlSessionFactory;
     private IDatabaseTester databaseTester;
 
@@ -52,20 +53,35 @@ public class AppTest {
     @Test
     public void 文字列で実行するSQLを指定する場合() {
         SqlSession session = sqlSessionFactory.openSession();
-        assertEquals(session.selectOne("tools.mybatis.sample.mapper.DataTableMapper.selectValue", 1), "value_1");
+
+        try {
+            assertEquals(session.selectOne("tools.mybatis.sample.mapper.DataTableMapper.selectValue", 1), "value_1");
+        } finally {
+            session.close();
+        }
     }
 
     @Test
     public void インターフェースで実行するSQLを指定する場合() {
         SqlSession session = sqlSessionFactory.openSession();
-        DataTableMapper mapper = session.getMapper(DataTableMapper.class);
-        assertEquals(mapper.selectValue(1), "value_1");
+
+        try {
+            DataTableMapper mapper = session.getMapper(DataTableMapper.class);
+            assertEquals(mapper.selectValue(1), "value_1");
+        } finally {
+            session.close();
+        }
     }
 
     @Test
     public void インターフェースのメソッドに付けたアノテーションで実行するSQLを指定する場合() {
         SqlSession session = sqlSessionFactory.openSession();
-        DataTableMapper mapper = session.getMapper(DataTableMapper.class);
-        assertEquals(mapper.selectValueId2(), "value_2");
+
+        try {
+            DataTableMapper mapper = session.getMapper(DataTableMapper.class);
+            assertEquals(mapper.selectValueId2(), "value_2");
+        } finally {
+            session.close();
+        }
     }
 }
