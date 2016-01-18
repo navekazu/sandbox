@@ -2,6 +2,7 @@ package tools.mybatis.sample;
 
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.dbunit.IDatabaseTester;
@@ -11,10 +12,13 @@ import org.dbunit.dataset.excel.XlsDataSet;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
 import org.junit.Test;
+import tools.mybatis.sample.mapper.DataTableMapper;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Unit test for simple App.
@@ -41,10 +45,27 @@ public class AppTest {
         // MyBatis setup
         String resource = "mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+    }
+
+
+    @Test
+    public void 文字列で実行するSQLを指定する場合() {
+        SqlSession session = sqlSessionFactory.openSession();
+        assertEquals(session.selectOne("tools.mybatis.sample.mapper.DataTableMapper.selectValue", 1), "value_1");
     }
 
     @Test
-    public void test() {
+    public void インターフェースで実行するSQLを指定する場合() {
+        SqlSession session = sqlSessionFactory.openSession();
+        DataTableMapper mapper = session.getMapper(DataTableMapper.class);
+        assertEquals(mapper.selectValue(1), "value_1");
+    }
+
+    @Test
+    public void インターフェースのメソッドに付けたアノテーションで実行するSQLを指定する場合() {
+        SqlSession session = sqlSessionFactory.openSession();
+        DataTableMapper mapper = session.getMapper(DataTableMapper.class);
+        assertEquals(mapper.selectValueId2(), "value_2");
     }
 }
