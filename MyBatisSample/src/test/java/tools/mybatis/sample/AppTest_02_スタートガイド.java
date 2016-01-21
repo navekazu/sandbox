@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
  * Unit test for simple App.
  * see -> http://www.mybatis.org/mybatis-3/ja/getting-started.html
  */
-public class AppTest_スタートガイド {
+public class AppTest_02_スタートガイド {
     private SqlSessionFactory sqlSessionFactory;
     private IDatabaseTester databaseTester;
 
