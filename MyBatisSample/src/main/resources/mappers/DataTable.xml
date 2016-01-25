@@ -20,4 +20,47 @@
         delete from data_table
         where id = #{id}
     </delete>
+    <select id="selectValueByResultMap" resultType="tools.mybatis.sample.domain.DataTable">
+        select id, value from data_table where id = #{id}
+    </select>
+    <select id="selectMultiRow" resultType="tools.mybatis.sample.domain.DataTable">
+        select id, value from data_table
+    </select>
+
+    <!-- 必ず条件がひとつある場合 -->
+    <select id="specificationIf1" parameterType="tools.mybatis.sample.domain.DataTable" resultType="tools.mybatis.sample.domain.DataTable">
+        select id, value
+        from data_table
+        where
+            id = #{id}
+            <if test="value != null">
+                and value = #{value}
+            </if>
+    </select>
+
+    <!-- 条件がないケースがある場合 -->
+    <!-- if文に該当する条件がない場合、where句が出力されない -->
+    <!-- もしvalueの条件のみが出力される場合、先頭のandは自動的に省略される -->
+    <select id="specificationIf2" parameterType="tools.mybatis.sample.domain.DataTable" resultType="tools.mybatis.sample.domain.DataTable">
+        select id, value
+        from data_table
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="value != null">
+                and value = #{value}
+            </if>
+        </where>
+    </select>
+
+    <select id="specificationSet" parameterType="tools.mybatis.sample.domain.DataTable">
+        update data_table
+        <set>
+            <if test="value != null">
+                value = #{value}
+            </if>
+        </set>
+        where id = #{id}
+    </select>
 </mapper>

@@ -1,6 +1,5 @@
 package tools.mybatis.sample;
 
-
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -22,10 +21,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * Unit test for simple App.
- * see -> http://www.mybatis.org/mybatis-3/ja/sqlmap-xml.html
+ * Created by k_watanabe on 2016/01/25.
  */
-public class AppTest_04_MapperXMLファイル {
+public class AppTest_05_動的SQL {
     private SqlSessionFactory sqlSessionFactory;
     private IDatabaseTester databaseTester;
 
@@ -33,13 +31,13 @@ public class AppTest_04_MapperXMLファイル {
     public void setup() throws Exception {
         // DBUnit setup
         databaseTester = new JdbcDatabaseTester(
-            "org.h2.Driver",
-            "jdbc:h2:file:testdb/testdb;DB_CLOSE_ON_EXIT=FALSE",
-            "sa", // user
-            ""    // pass
+                "org.h2.Driver",
+                "jdbc:h2:file:testdb/testdb;DB_CLOSE_ON_EXIT=FALSE",
+                "sa", // user
+                ""    // pass
         );
         databaseTester.setDataSet(
-            new XlsDataSet(new File("TestData.xls"))
+                new XlsDataSet(new File("TestData.xls"))
         );
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
         databaseTester.onSetup();
@@ -51,39 +49,28 @@ public class AppTest_04_MapperXMLファイル {
     }
 
     @Test
-    public void insertしてupdateしてdelete() {
+    public void if文() {
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
             DataTableMapper mapper = session.getMapper(DataTableMapper.class);
+            DataTable dataTable;
 
-            // insert
-            mapper.insertValue(new DataTable(999, "value_999"));
-            assertEquals(mapper.selectValue(999), "value_999");
-
-            // update
-            mapper.updateValue(new DataTable(999, "value_999___"));
-            assertEquals(mapper.selectValue(999), "value_999___");
-
-            // delete
-            mapper.deleteValue(999);
-            assertNull(mapper.selectValue(999));
-        } catch(Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
-
-    @Test
-    public void ResultMapを使用する() {
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-            DataTableMapper mapper = session.getMapper(DataTableMapper.class);
-            DataTable dataTable = mapper.selectValueByResultMap(1);
+            dataTable = mapper.specificationIf1(DataTable.builder().id(1).build());
             assertEquals(dataTable.getId().intValue(), 1);
-            assertEquals(dataTable.getValue(), "value_1");
+
+            dataTable = mapper.specificationIf1(DataTable.builder().id(1).value("miss").build());
+            assertNull(dataTable);
+
+            List<DataTable> list;
+            list = mapper.specificationIf2(DataTable.builder().id(1).build());
+            assertEquals(list.get(0).getId().intValue(), 1);
+
+            list = mapper.specificationIf2(DataTable.builder().value("value_1").build());
+            assertEquals(list.get(0).getId().intValue(), 1);
+
+            list = mapper.specificationIf2(DataTable.builder().build());
+            assertEquals(list.size(), 5);
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -92,14 +79,21 @@ public class AppTest_04_MapperXMLファイル {
         }
     }
 
+
     @Test
-    public void 複数行を取得する() {
+    public void set文() {
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
             DataTableMapper mapper = session.getMapper(DataTableMapper.class);
-            List<DataTable> list = mapper.selectMultiRow();
-            assertEquals(list.size(), 5);
+            DataTable dataTable;
+            List<DataTable> list;
+
+            mapper.specificationSet(DataTable.builder().id(1).value("aaaa").build());
+            dataTable = mapper.specificationIf1(DataTable.builder().id(1).build());
+            assertEquals(dataTable.getValue(), "aaaa");
+
+            mapper.specificationSet(DataTable.builder().id(1).value("value_1").build());
 
         } catch(Exception e) {
             e.printStackTrace();
