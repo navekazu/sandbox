@@ -27,4 +27,13 @@ public interface DataTableMapper {
     public List<DataTable> specificationIf2(DataTable data);
 
     public void specificationSet(DataTable data);
+
+    public List<DataTable> specificationChoose(DataTable data);
+
+    public List<DataTable> specificationTrimWhere(DataTable data);
+    public void specificationTrimSet(DataTable data);
+
+    public List<DataTable> specificationForeach(List list);
+
+
 }

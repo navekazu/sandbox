@@ -15,6 +15,7 @@ import tools.mybatis.sample.mapper.DataTableMapper;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -94,6 +95,86 @@ public class AppTest_05_動的SQL {
             assertEquals(dataTable.getValue(), "aaaa");
 
             mapper.specificationSet(DataTable.builder().id(1).value("value_1").build());
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Test
+    public void choose文() {
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            DataTableMapper mapper = session.getMapper(DataTableMapper.class);
+            DataTable dataTable;
+            List<DataTable> list;
+
+            // 「<when test="id != null">」に該当して、ID=1が取れるはず
+            list = mapper.specificationChoose(DataTable.builder().id(1).build());
+            assertEquals(list.size(), 1);
+
+            // 「<when test="value != null">」に該当して、VALUE=value_1が取れるはず
+            list = mapper.specificationChoose(DataTable.builder().value("value_1").build());
+            assertEquals(list.size(), 1);
+
+            // 「<otherwise>」に該当して、ID=1が取れるはず
+            list = mapper.specificationChoose(DataTable.builder().build());
+            assertEquals(list.size(), 1);
+
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Test
+    public void trim文() {
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            DataTableMapper mapper = session.getMapper(DataTableMapper.class);
+            List<DataTable> list;
+
+            // whereの直後の最初のandが削除され、SQLエラーは発生しない
+            list = mapper.specificationTrimWhere(DataTable.builder().id(1).build());
+            assertEquals(list.size(), 1);
+
+            // setの最後の , が削除され、SQLエラーは発生しない
+            mapper.specificationTrimSet(DataTable.builder().id(1).value("aaa").build());
+            list = mapper.specificationTrimWhere(DataTable.builder().value("aaa").build());
+            assertEquals(list.size(), 1);
+
+            mapper.specificationTrimSet(DataTable.builder().id(1).value("value_1").build());
+            list = mapper.specificationTrimWhere(DataTable.builder().id(1).build());
+            assertEquals(list.size(), 1);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
+    @Test
+    public void foreach文() {
+        SqlSession session = sqlSessionFactory.openSession();
+
+        try {
+            DataTableMapper mapper = session.getMapper(DataTableMapper.class);
+            List<DataTable> list;
+            List<Integer> ids = new ArrayList<>();
+            ids.add(1);
+            ids.add(2);
+            ids.add(5);
+
+            list = mapper.specificationForeach(ids);
+            assertEquals(list.size(), 3);
+
 
         } catch(Exception e) {
             e.printStackTrace();

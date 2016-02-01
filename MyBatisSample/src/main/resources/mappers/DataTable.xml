@@ -63,4 +63,59 @@
         </set>
         where id = #{id}
     </select>
+
+    <select id="specificationChoose" parameterType="tools.mybatis.sample.domain.DataTable" resultType="tools.mybatis.sample.domain.DataTable">
+        select id, value
+        from data_table
+        <where>
+            <choose>
+                <when test="id != null">
+                    id = #{id}
+                </when>
+                <when test="value != null">
+                    value = #{value}
+                </when>
+                <otherwise>
+                    id = 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <!-- 条件によっては 「where and」となってしまうが、trimを使うとプレフィックスのandやorを削除してくれる -->
+    <select id="specificationTrimWhere" parameterType="tools.mybatis.sample.domain.DataTable" resultType="tools.mybatis.sample.domain.DataTable">
+        select id, value
+        from data_table
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="value != null">
+                and value = #{value}
+            </if>
+        </trim>
+    </select>
+
+    <!-- 条件によってはsetの最後にカンマが入ってしまうが、trimを使うとサフィックスの , を削除してくれる -->
+    <select id="specificationTrimSet" parameterType="tools.mybatis.sample.domain.DataTable" resultType="tools.mybatis.sample.domain.DataTable">
+        update data_table
+        <trim prefix="set" suffixOverrides=",">
+            <if test="value != null">
+                value = #{value},
+            </if>
+        </trim>
+        where id = #{id}
+    </select>
+
+    <select id="specificationForeach" resultType="tools.mybatis.sample.domain.DataTable">
+        select id, value
+        from data_table
+        where id in
+        <foreach item="itm" index="i" collection="list"
+                 open="(" separator="," close=")">
+            #{itm}
+        </foreach>
+    </select>
+
+
 </mapper>
