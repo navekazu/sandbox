@@ -10,6 +10,8 @@ import org.dbunit.dataset.excel.XlsDataSet;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tools.mybatis.sample.domain.DataTable;
 import tools.mybatis.sample.mapper.DataTableMapper;
 
@@ -21,6 +23,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class AppTest_08_ロギング {
+    private Logger logger = LoggerFactory.getLogger(AppTest_08_ロギング.class);
     private SqlSessionFactory sqlSessionFactory;
     private IDatabaseTester databaseTester;
 
@@ -56,6 +59,7 @@ public class AppTest_08_ロギング {
 
     @Test
     public void if文() {
+
         SqlSession session = sqlSessionFactory.openSession();
 
         try {
