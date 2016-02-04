@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-<!--
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
       <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
     </encoder>
   </appender>
- 
-  <logger name="com.tasknotes.slf4j" level="INFO"/>
--->
 
-    <!--
-      <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-          <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
-        </encoder>
-      </appender>
-      <root level="TRACE">
-        <appender-ref ref="STDOUT" />
-      </root>
-      <logger name="tools.mybatis.sample.mapper.DataTableMapper">
-        <level value="INFO" />
-        <appender-ref ref="STDOUT" />
-      </logger>
-    -->
+  <logger name="tools.mybatis.sample.mapper" level="DEBUG" />
+
+  <root>
+    <appender-ref ref="STDOUT" />
+  </root>
 
 </configuration>

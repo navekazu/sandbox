@@ -47,18 +47,35 @@ public class AppTest_08_ロギング {
         InputStream inputStream = Resources.getResourceAsStream(resource);
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
-        // ログ出力にどの実装を使用するかは、設定ファイルの下記に記述する
+        // ログ出力にどの実装を使用するかは、mybatis-config.xmlに記述する
         // <configuration>
         //   <settings>
         //     ...
-        //     <setting name="logImpl" value="LOG4J"/>
+        //     <setting name="logImpl" value="SLF4J"/>
         //     ...
         //   </settings>
         // </configuration>
+
+        // あとはSLF4J(Logback)の設定をする
+        // <configuration>
+        //   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        //     <encoder>
+        //       <pattern>%d{HH:mm:ss.SSS} %-5level %logger{10} %msg%n</pattern>
+        //     </encoder>
+        //   </appender>
+        //   <logger name="tools.mybatis.sample.mapper.DataTableMapper" level="DEBUG" />
+        //   <root>
+        //     <appender-ref ref="STDOUT" />
+        //   </root>
+        // </configuration>
+
+        // マッパーを指定して出力する場合は上記のようにし、パッケージ全体のマッパーを指定する場合は下記のようにする
+        //   <logger name="tools.mybatis.sample.mapper" level="DEBUG" />
+
     }
 
     @Test
-    public void if文() {
+    public void ログ出力の確認() {
 
         SqlSession session = sqlSessionFactory.openSession();
 
