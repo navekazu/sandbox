@@ -1,0 +1,56 @@
+01-15 13:02:40 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: 機能はサポートされていません: "getFunctions"
+Feature not supported: "getFunctions" [50100-171]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.getUnsupportedException(DbException.java:204)
+	at org.h2.message.TraceObject.unsupported(TraceObject.java:391)
+	at org.h2.jdbc.JdbcDatabaseMetaData.getFunctions(JdbcDatabaseMetaData.java:2938)
+	at tools.dbconnector5.control.MainControl$MetadataTreeUpdateRunner.run(MainControl.java:537)
+	at java.lang.Thread.run(Thread.java:745)
+01-15 13:05:10 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: 機能はサポートされていません: "getFunctions"
+Feature not supported: "getFunctions" [50100-171]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.getUnsupportedException(DbException.java:204)
+	at org.h2.message.TraceObject.unsupported(TraceObject.java:391)
+	at org.h2.jdbc.JdbcDatabaseMetaData.getFunctions(JdbcDatabaseMetaData.java:2938)
+	at tools.dbconnector5.control.MainControl$MetadataTreeUpdateRunner.run(MainControl.java:537)
+	at java.lang.Thread.run(Thread.java:745)
+02-08 11:32:56 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: 機能はサポートされていません: "getFunctions"
+Feature not supported: "getFunctions" [50100-171]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.getUnsupportedException(DbException.java:204)
+	at org.h2.message.TraceObject.unsupported(TraceObject.java:391)
+	at org.h2.jdbc.JdbcDatabaseMetaData.getFunctions(JdbcDatabaseMetaData.java:2938)
+	at tools.dbconnector5.control.MainControl$MetadataTreeUpdateRunner.run(MainControl.java:537)
+	at java.lang.Thread.run(Thread.java:745)
+02-08 11:34:12 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: テーブル "DATA_TABLE" はすでに存在します
+Table "DATA_TABLE" already exists; SQL statement:
+create table data_table (
+    id int,
+    value varchar(100),
+    primary key(id)
+) [42101-171]
+02-08 11:34:57 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: 機能はサポートされていません: "getFunctions"
+Feature not supported: "getFunctions" [50100-171]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.message.DbException.getUnsupportedException(DbException.java:204)
+	at org.h2.message.TraceObject.unsupported(TraceObject.java:391)
+	at org.h2.jdbc.JdbcDatabaseMetaData.getFunctions(JdbcDatabaseMetaData.java:2938)
+	at tools.dbconnector5.control.MainControl$MetadataTreeUpdateRunner.run(MainControl.java:537)
+	at java.lang.Thread.run(Thread.java:745)
+02-08 11:35:34 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: SQLステートメントに文法エラーがあります "INSERT INTO ENV_INFO VALUE[*](1, 'development') "; 期待されるステートメント "., (, DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"
+Syntax error in SQL statement "INSERT INTO ENV_INFO VALUE[*](1, 'development') "; expected "., (, DIRECT, SORTED, DEFAULT, VALUES, SET, (, SELECT, FROM"; SQL statement:
+insert into env_info value(1, 'development') [42001-171]

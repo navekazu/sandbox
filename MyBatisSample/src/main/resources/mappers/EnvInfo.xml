@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tools.mybatis.sample.mapper.EnvInfoMapper">
+    <select id="selectEnvInfo" resultType="tools.mybatis.sample.domain.EnvInfo">
+        select id, value from env_info where id = #{id}
+    </select>
+    <select id="selectValue" resultType="String">
+        select value from env_info where id = #{id}
+    </select>
+</mapper>

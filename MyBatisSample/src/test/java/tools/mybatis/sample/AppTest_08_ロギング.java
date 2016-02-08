@@ -32,7 +32,7 @@ public class AppTest_08_ロギング {
         // DBUnit setup
         databaseTester = new JdbcDatabaseTester(
                 "org.h2.Driver",
-                "jdbc:h2:file:testdb/testdb;DB_CLOSE_ON_EXIT=FALSE",
+                "jdbc:h2:file:testdb_development/testdb;DB_CLOSE_ON_EXIT=FALSE",
                 "sa", // user
                 ""    // pass
         );

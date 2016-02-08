@@ -3,3 +3,10 @@ create table data_table (
     value varchar(100),
     primary key(id)
 );
+
+create table env_info (
+    id int,
+    value varchar(100),
+    primary key(id)
+);
+
