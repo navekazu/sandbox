@@ -29,5 +29,6 @@
     <mappers>
         <mapper resource="mappers/DataTable.xml"/>
         <mapper resource="mappers/EnvInfo.xml"/>
+        <mapper resource="mappers/Sql.xml"/>
     </mappers>
 </configuration>
