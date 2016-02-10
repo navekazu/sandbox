@@ -1,10 +1,12 @@
 package tools.mybatis.sample.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.jdbc.SQL;
 import tools.mybatis.sample.domain.DataTable;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by k_watanabe on 2016/02/09.
@@ -43,20 +45,20 @@ public interface SqlMapper {
                     .toString();
         }
 
-        /*
-        public String selectDataTable(final Integer id, final String value) {
+        public String selectDataTable(Map<String,Object> params) {  // Mapじゃないとダメなのか？？
+            Integer id = (Integer)params.get("id");      // いけてない
+            String value  = (String)params.get("value");
             return new SQL(){{
                 SELECT("id, value");
                 FROM("data_table");
                 if (id!=null) {
-                    WHERE("id=${id}");
+                    WHERE("id="+id);        // プレースホルダは使えないのか？？
                 }
                 if (value!=null) {
-                    WHERE("value like ${value}");
+                    WHERE("value like '"+value+"'");
                 }
             }}.toString();
         }
-        */
 
     }
 
@@ -72,6 +74,6 @@ public interface SqlMapper {
     @SelectProvider(type = SqlProvider.class, method = "insertDataTable")
     public void insertDataTable();
 
-//    @SelectProvider(type = SqlProvider.class, method = "selectDataTable")
-//    public List<DataTable> selectDataTable(Integer id, String value);
+    @SelectProvider(type = SqlProvider.class, method = "selectDataTable")
+    public List<DataTable> selectDataTable(@Param("id") Integer id, @Param("value") String value);
 }

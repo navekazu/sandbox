@@ -97,8 +97,7 @@ public class AppTest_07_ステートメントビルダー {
     }
 
     @Test
-    public void 条件分岐のテスト() {
-/*
+    public void 条件分岐のテスト() throws Exception {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             SqlMapper mapper = session.getMapper(SqlMapper.class);
             List<DataTable> list;
@@ -117,10 +116,6 @@ public class AppTest_07_ステートメントビルダー {
 
             list = mapper.selectDataTable(2, "value_1");
             assertEquals(list.size(), 0);
-
-        } catch(Exception e) {
-            e.printStackTrace();
         }
-*/
     }
 }
