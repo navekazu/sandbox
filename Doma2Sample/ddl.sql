@@ -1,10 +1,6 @@
-create table data_table (
+create table employee (
     id int,
-    value varchar(100),
-    primary key(id)
-);
-create table data_table2 (
-    id int,
-    value varchar(100),
+    name varchar(100),
+    email varchar(100),
     primary key(id)
 );
