@@ -10,13 +10,6 @@ import org.seasar.doma.jdbc.tx.TransactionManager;
 
 import javax.sql.DataSource;
 
-/**
- * シンプルな定義.
- *
- * シンプルな定義は次の場合に適しています。
- * ・DIコンテナで管理しない
- * ・ローカルトランザクションを使用する
- */
 @SingletonConfig
 public class Doma2SimpleConfig implements Config {
     private static final Doma2SimpleConfig CONFIG = new Doma2SimpleConfig();
@@ -32,37 +25,21 @@ public class Doma2SimpleConfig implements Config {
                 dataSource.getLocalTransaction(getJdbcLogger()));
     }
 
-    /**
-     * データベースの方言を定義する
-     * @return 方言
-     */
     @Override
     public Dialect getDialect() {
         return dialect;
     }
 
-    /**
-     * データソースを返す
-     * @return データソース
-     */
     @Override
     public DataSource getDataSource() {
         return dataSource;
     }
 
-    /**
-     * トランザクションマネージャを返す
-     * @return トランザクションマネージャ
-     */
     @Override
     public TransactionManager getTransactionManager() {
         return transactionManager;
     }
 
-    /**
-     * 定義のシングルトンオブジェクトを返す
-     * @return シングルトンオブジェクト
-     */
     public static Doma2SimpleConfig singleton() {
         return CONFIG;
     }
