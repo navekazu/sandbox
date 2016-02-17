@@ -10,10 +10,6 @@ import org.seasar.doma.Id;
 import java.util.Optional;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Employee {
     @Id
     Integer id;

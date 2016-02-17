@@ -20,23 +20,16 @@ public class AppTest_02_設定 extends AppTest {
 
     @Before
     public void before() throws Exception {
-//        databaseTester = getDatabaseTester("./testdb_development", "TestData.xls");
+        databaseTester = getDatabaseTester("./testdb_development", "TestData.xls");
     }
 
     @After
     public void after() throws Exception {
-//        databaseTester.onTearDown();
+        databaseTester.onTearDown();
     }
 
     @Test
     public void test1() {
-    }
-
-    @Test
-    public void test2() {
-    }
-
-    public void testApp() {
-        assertEquals(true, true);
+        // Doma2SimpleConfigクラスが「設定」の章の内容
     }
 }

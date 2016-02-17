@@ -1,2 +1,2 @@
-insert into data_table values(100, 'v100');
-insert into data_table values(200, 'v200');
+insert into employee values(11, 'Test11', 'test11@test.com');
+insert into employee values(12, 'Test12', 'test12@test.com');
