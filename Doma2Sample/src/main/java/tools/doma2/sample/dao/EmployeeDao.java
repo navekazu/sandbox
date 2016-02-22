@@ -1,6 +1,7 @@
 package tools.doma2.sample.dao;
 
 import org.seasar.doma.Dao;
+import org.seasar.doma.Insert;
 import org.seasar.doma.Select;
 import tools.doma2.sample.config.Doma2SimpleConfig;
 import tools.doma2.sample.entity.Employee;
@@ -14,4 +15,7 @@ public interface EmployeeDao {
 
     @Select
     List<String> selectAllName();
+
+    @Insert
+    int insert(Employee entity);
 }
