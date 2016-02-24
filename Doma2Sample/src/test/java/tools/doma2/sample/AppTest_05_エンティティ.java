@@ -4,12 +4,16 @@ import org.dbunit.IDatabaseTester;
 import org.junit.*;
 import org.seasar.doma.jdbc.tx.TransactionManager;
 import tools.doma2.sample.config.Doma2SimpleConfig;
+import tools.doma2.sample.dao.CompanySectionDao;
+import tools.doma2.sample.dao.CompanySectionDaoImpl;
 import tools.doma2.sample.dao.EmployeeDao;
 import tools.doma2.sample.dao.EmployeeDaoImpl;
 import tools.doma2.sample.domain.Email;
 import tools.doma2.sample.domain.JobType;
+import tools.doma2.sample.entity.CompanySection;
 import tools.doma2.sample.entity.Employee;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -37,7 +41,7 @@ public class AppTest_05_エンティティ extends AppTest {
     }
 
     @Test
-    public void test1() {
+    public void エンティティリスナ_ネーミング規約() {
         TransactionManager tm = Doma2SimpleConfig.singleton().getTransactionManager();
 
         tm.required(() -> {
@@ -53,6 +57,24 @@ public class AppTest_05_エンティティ extends AppTest {
             // エンティティのアノテーションに「listener=EmployeeEntityListener.class」を入れてListenerを通知し、
             // 「naming = NamingType.SNAKE_LOWER_CASE」でネーミング規約を宣言している。
             employeeDao.insert(emp);
+        });
+    }
+
+    @Test
+    public void イミュータブルなエンティティ() {
+        TransactionManager tm = Doma2SimpleConfig.singleton().getTransactionManager();
+
+        tm.required(() -> {
+            // マスタ等、更新されないあたｊ
+            CompanySectionDao  companySectionDao = new CompanySectionDaoImpl();
+            List<CompanySection> list = companySectionDao.selectAll();
+
+            assertEquals(list.get(0).id, Integer.valueOf(1));
+            assertEquals(list.get(1).id, Integer.valueOf(2));
+            assertEquals(list.get(2).id, Integer.valueOf(3));
+
+            // イミュータブルだから更新できない
+            // list.get(0).name = "not update";
         });
     }
 }
