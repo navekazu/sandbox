@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Builder;
 import org.seasar.doma.Entity;
 import org.seasar.doma.Id;
+import org.seasar.doma.OriginalStates;
 import org.seasar.doma.Version;
 import org.seasar.doma.jdbc.entity.NamingType;
 import tools.doma2.sample.domain.Email;
@@ -23,4 +24,7 @@ public class Employee implements Serializable {
     public Optional<String> name;
     public Optional<Email> email;
     public Optional<JobType> jobType;
+
+    @OriginalStates
+    public Employee originalStates;
 }

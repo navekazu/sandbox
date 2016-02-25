@@ -65,7 +65,7 @@ public class AppTest_05_エンティティ extends AppTest {
         TransactionManager tm = Doma2SimpleConfig.singleton().getTransactionManager();
 
         tm.required(() -> {
-            // マスタ等、更新されないあたｊ
+            // マスタ等、更新されない値
             CompanySectionDao  companySectionDao = new CompanySectionDaoImpl();
             List<CompanySection> list = companySectionDao.selectAll();
 
@@ -75,6 +75,23 @@ public class AppTest_05_エンティティ extends AppTest {
 
             // イミュータブルだから更新できない
             // list.get(0).name = "not update";
+        });
+    }
+
+    @Test
+    public void アノテーション_OriginalStates() {
+        TransactionManager tm = Doma2SimpleConfig.singleton().getTransactionManager();
+
+        tm.required(() -> {
+            EmployeeDao employeeDao = new EmployeeDaoImpl();
+            Employee employee = employeeDao.selectById(1);
+
+            // 取得時の値が@OriginalStatesを付けたフィールドに入れられている
+            // @OriginalStatesは自身のエンティティ型と同じでなければならない
+            assertEquals(employee.id, employee.originalStates.id);
+            assertEquals(employee.name, employee.originalStates.name);
+            assertEquals(employee.email, employee.originalStates.email);
+            assertEquals(employee.jobType, employee.originalStates.jobType);
         });
     }
 }
