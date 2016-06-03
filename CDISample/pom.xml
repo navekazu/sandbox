@@ -45,5 +45,12 @@
       <artifactId>slf4j-simple</artifactId>
       <version>1.7.13</version>
     </dependency>
+
+    <!-- http://mvnrepository.com/artifact/com.sun.jersey/jersey-core -->
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-core</artifactId>
+      <version>1.19.1</version>
+    </dependency>
   </dependencies>
 </project>
