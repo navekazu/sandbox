@@ -1,0 +1,1 @@
+set HTTP_PROXY=http://172.16.70.4:3128/
