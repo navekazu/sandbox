@@ -9,14 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.*;
 
 import static org.junit.Assert.assertEquals;
 
-public class AppTest {
-    Logger logger = LoggerFactory.getLogger(AppTest.class);
+public class ForkJoinTest {
+    Logger logger = LoggerFactory.getLogger(ForkJoinTest.class);
 
     @BeforeClass
     public static void beforeClass() throws Exception {
@@ -94,58 +93,4 @@ public class AppTest {
         }
     }
 
-    @Test
-    public void completableFutureSampleTest1() {
-        logger.info("***** completableFutureSampleTest1 *****");
-        CompletableFutureSample sample = new CompletableFutureSample();
-        ExecutorService executor = Executors.newFixedThreadPool(3);
-        CompletableFuture<Result> exec1 = CompletableFuture.supplyAsync(() -> sample.exec1(), executor);
-        CompletableFuture<Result> exec10 = CompletableFuture.supplyAsync(() -> sample.exec10(), executor);
-        CompletableFuture<Result> exec100 = CompletableFuture.supplyAsync(() -> sample.exec100(), executor);
-
-        try {
-            logger.info("finish forkJoinSampleTest. value=" + (exec1.get().value));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void completableFutureSampleTest2() {
-        logger.info("***** completableFutureSampleTest2 *****");
-        CompletableFutureSample sample = new CompletableFutureSample();
-
-        CompletableFuture<Result> exec1 = CompletableFuture.supplyAsync(() -> sample.exec1());
-        CompletableFuture<Result> exec10 = CompletableFuture.supplyAsync(() -> sample.exec10());
-        CompletableFuture<Void> exec100 = exec1.acceptEither(exec10, x -> sample.exec100());
-
-        try {
-            logger.info("finish forkJoinSampleTest. value=" + (exec1.get().value));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void completableFutureSampleTest3() {
-        logger.info("***** completableFutureSampleTest3 *****");
-        CompletableFutureSample sample = new CompletableFutureSample();
-
-        CompletableFuture<Result> exec1 = CompletableFuture.supplyAsync(() -> sample.exec1());
-        CompletableFuture<Result> exec10 = CompletableFuture.supplyAsync(() -> sample.exec10());
-        CompletableFuture<Result> exec100 = CompletableFuture.supplyAsync(() -> sample.exec100());
-
-        try {
-            logger.info("finish forkJoinSampleTest?");
-            logger.info("finish forkJoinSampleTest. value=" + (exec1.get().value));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-    }
 }
