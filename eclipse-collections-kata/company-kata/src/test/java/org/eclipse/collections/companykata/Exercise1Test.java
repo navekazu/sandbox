@@ -12,6 +12,7 @@ package org.eclipse.collections.companykata;
 
 import org.eclipse.collections.api.block.function.Function;
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.impl.block.factory.Predicates;
 import org.eclipse.collections.impl.list.mutable.FastList;
 import org.eclipse.collections.impl.test.Verify;
 import org.junit.Assert;
@@ -28,7 +29,7 @@ public class Exercise1Test extends CompanyDomainForKata
          * Get the name of each of the company's customers.
          */
         MutableList<Customer> customers = this.company.getCustomers();
-        MutableList<String> customerNames = null;
+        MutableList<String> customerNames = customers.collect(nameFunction);
 
         MutableList<String> expectedNames = FastList.newListWith("Fred", "Mary", "Bill");
         Assert.assertEquals(expectedNames, customerNames);
@@ -41,7 +42,8 @@ public class Exercise1Test extends CompanyDomainForKata
          * Get the city for each of the company's customers.
          */
         MutableList<Customer> customers = this.company.getCustomers();
-        MutableList<String> customerCities = null;
+        Function<Customer, String> cityFunction = Customer::getCity;
+        MutableList<String> customerCities = customers.collect(cityFunction);
 
         MutableList<String> expectedCities = FastList.newListWith("London", "Liphook", "London");
         Assert.assertEquals(expectedCities, customerCities);
@@ -54,7 +56,9 @@ public class Exercise1Test extends CompanyDomainForKata
          * Which customers come from London? Get a collection of those which do.
          */
         MutableList<Customer> customers = this.company.getCustomers();
-        MutableList<Customer> customersFromLondon = null;
+        //MutableList<Customer> customersFromLondon = customers.select(c -> c.getCity().equals("London"));
+        // or ↓
+        MutableList<Customer> customersFromLondon = customers.select(Predicates.attributeEqual(Customer::getCity, "London"));
         Verify.assertSize("Should be 2 London customers", 2, customersFromLondon);
     }
 }
