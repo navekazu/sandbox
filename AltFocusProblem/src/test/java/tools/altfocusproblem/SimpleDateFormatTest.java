@@ -64,7 +64,7 @@ public class SimpleDateFormatTest {
         Date expected = sdf.parse(date);
 
         List<Integer> sampleData = new ArrayList<>();
-        IntStream.rangeClosed(1, 3000000).forEach(i -> sampleData.add(i));
+        IntStream.rangeClosed(1, 30000).forEach(i -> sampleData.add(i));
 
         sampleData.stream().forEach(i -> {
             try {
@@ -81,7 +81,7 @@ public class SimpleDateFormatTest {
         Date expected = sdf.parse(date);
 
         List<Integer> sampleData = new ArrayList<>();
-        IntStream.rangeClosed(1, 3000000).forEach(i -> sampleData.add(i));
+        IntStream.rangeClosed(1, 30000).forEach(i -> sampleData.add(i));
 
         ForkJoinPool forkJoinPool = new ForkJoinPool(10000);
         forkJoinPool.submit(() ->
