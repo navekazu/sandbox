@@ -8,6 +8,6 @@ repositories {
 }
 
 dependencies {
-    compile "com.codeborne:selenide:4.0"
+    testCompile "com.codeborne:selenide:4.0"
     testCompile "junit:junit:4.12"
 }

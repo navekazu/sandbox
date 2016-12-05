@@ -1,7 +1,10 @@
 package tools.selenidesamples;
 
 import org.junit.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
+import static com.codeborne.selenide.Selenide.open;
 import static org.junit.Assert.assertTrue;
 
 public class AppTest {
@@ -23,6 +26,9 @@ public class AppTest {
 
     @Test
     public void test() throws Exception {
-        assertTrue(true);
+        WebDriver driver = new FirefoxDriver();
+        driver.navigate().to("http://www.google.co.jp/");
+
+//        open("http://www.google.co.jp/");
     }
 }
