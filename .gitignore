@@ -9,6 +9,10 @@
 */target/
 */testdb/
 
+# Gradle
+*/.gradle/
+*/build/
+
 # VisualStudio
 **/bin/
 **/obj/
