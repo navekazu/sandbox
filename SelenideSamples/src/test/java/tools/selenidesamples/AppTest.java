@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.screenshot;
@@ -18,13 +19,13 @@ public class AppTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         // http://selenium-release.storage.googleapis.com/index.html
-        System.setProperty("webdriver.ie.driver", "C:\\IEDriverServer.exe");
+        System.setProperty("webdriver.ie.driver", "C:\\SeleniumDriver\\IEDriverServer.exe");
 
         // https://github.com/mozilla/geckodriver/releases
-        System.setProperty("webdriver.gecko.driver", "C:\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "C:\\SeleniumDriver\\geckodriver.exe");
 
         // http://chromedriver.storage.googleapis.com/index.html
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\SeleniumDriver\\chromedriver.exe");
 
 //        Configuration.browser = WebDriverRunner.FIREFOX;
 //        Configuration.browser = WebDriverRunner.CHROME;
@@ -59,8 +60,11 @@ public class AppTest {
     @Test
     public void selenideTest() throws Exception {
         open("http://www.yahoo.co.jp/");
-        $(By.id("srchtxt")).val("selenide");
-        $(By.id("srchbtn")).click();
-        screenshot("saved");
+//        $(By.id("srchtxt")).val("selenide");
+//        $(By.id("srchbtn")).click();
+        $("#srchtxt").val("selenide");
+        $("#srchbtn").click();
+        $("#yschsp").shouldHave(text("selenide"));
+//        screenshot("saved");
     }
 }

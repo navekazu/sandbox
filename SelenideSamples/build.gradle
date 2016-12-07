@@ -8,6 +8,7 @@ repositories {
 }
 
 dependencies {
+    compile "org.slf4j:slf4j-simple:1.7.21"
     testCompile "com.codeborne:selenide:4.0"
     testCompile "junit:junit:4.12"
 }
