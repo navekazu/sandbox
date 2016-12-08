@@ -28,8 +28,9 @@ public class AppTest {
         System.setProperty("webdriver.chrome.driver", "C:\\SeleniumDriver\\chromedriver.exe");
 
 //        Configuration.browser = WebDriverRunner.FIREFOX;
-//        Configuration.browser = WebDriverRunner.CHROME;
-        Configuration.browser = WebDriverRunner.INTERNET_EXPLORER;
+        Configuration.browser = WebDriverRunner.CHROME;
+//        Configuration.browser = WebDriverRunner.INTERNET_EXPLORER;
+        Configuration.reportsFolder = "test-result/reports";
     }
 
     @AfterClass
@@ -60,11 +61,10 @@ public class AppTest {
     @Test
     public void selenideTest() throws Exception {
         open("http://www.yahoo.co.jp/");
-//        $(By.id("srchtxt")).val("selenide");
-//        $(By.id("srchbtn")).click();
         $("#srchtxt").val("selenide");
         $("#srchbtn").click();
-        $("#yschsp").shouldHave(text("selenide"));
-//        screenshot("saved");
+
+        $("body").shouldHave(text("Selenide: concise UI tests in Java - このページを和訳"));
+        screenshot("selenideTest");
     }
 }
