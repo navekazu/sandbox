@@ -20,21 +20,21 @@ public class AppTest {
     public static void beforeClass() throws Exception {
 
         // http://selenium-release.storage.googleapis.com/index.html
-        System.setProperty("webdriver.ie.driver", "C:\\SeleniumDriver\\IEDriverServer.exe");
-
         // https://github.com/mozilla/geckodriver/releases
-        System.setProperty("webdriver.gecko.driver", "C:\\SeleniumDriver\\geckodriver.exe");
-
         // http://chromedriver.storage.googleapis.com/index.html
+
+        // WebDriverのパスを設定
+        System.setProperty("webdriver.ie.driver", "C:\\SeleniumDriver\\IEDriverServer.exe");
+        System.setProperty("webdriver.gecko.driver", "C:\\SeleniumDriver\\geckodriver.exe");
         System.setProperty("webdriver.chrome.driver", "C:\\SeleniumDriver\\chromedriver.exe");
 
         // テスト結果の出力先
         Configuration.reportsFolder = "test-result/reports";
 
         // 使用するブラウザの指定
+//        Configuration.browser = WebDriverRunner.INTERNET_EXPLORER;
 //        Configuration.browser = WebDriverRunner.FIREFOX;
         Configuration.browser = WebDriverRunner.CHROME;
-//        Configuration.browser = WebDriverRunner.INTERNET_EXPLORER;
     }
 
     @AfterClass
