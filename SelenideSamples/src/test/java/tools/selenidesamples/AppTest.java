@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 public class AppTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
+
         // http://selenium-release.storage.googleapis.com/index.html
         System.setProperty("webdriver.ie.driver", "C:\\SeleniumDriver\\IEDriverServer.exe");
 
@@ -27,10 +28,13 @@ public class AppTest {
         // http://chromedriver.storage.googleapis.com/index.html
         System.setProperty("webdriver.chrome.driver", "C:\\SeleniumDriver\\chromedriver.exe");
 
+        // テスト結果の出力先
+        Configuration.reportsFolder = "test-result/reports";
+
+        // 使用するブラウザの指定
 //        Configuration.browser = WebDriverRunner.FIREFOX;
         Configuration.browser = WebDriverRunner.CHROME;
 //        Configuration.browser = WebDriverRunner.INTERNET_EXPLORER;
-        Configuration.reportsFolder = "test-result/reports";
     }
 
     @AfterClass
