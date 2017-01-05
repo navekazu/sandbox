@@ -42,9 +42,9 @@ public class PrinterTest {
         PageLayout pageLayout = printer.getDefaultPageLayout();
         PrinterJob job = PrinterJob.createPrinterJob(printer);
 //        job.setPrinter(Printer.getDefaultPrinter());
-        System.out.println("jobStatus result:"+job.getJobStatus().name());
-        System.out.println("printPage result:"+job.printPage(pageLayout, node));
-        System.out.println("endJob    result:"+job.endJob());
+//        System.out.println("jobStatus result:"+job.getJobStatus().name());
+//        System.out.println("printPage result:"+job.printPage(pageLayout, node));
+//        System.out.println("endJob    result:"+job.endJob());
     }
 
     private void outputPrinterInformation(Printer printer) {
