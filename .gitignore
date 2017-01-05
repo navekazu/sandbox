@@ -1,17 +1,30 @@
 # Intellij
 */.idea/
 */*.iml
+*.iml
 */*.iws
 
 # Maven
 */log/
 */logs/
 */target/
+target
 */testdb/
 
 # Gradle
 */.gradle/
 */build/
+*/gradle/
+!*/gradle-wrapper.jar
+
+
+# jar
+*/*.jar
+
+# project
+*/log/
+*/logs/
+*/testdb/
 
 # VisualStudio
 **/bin/
