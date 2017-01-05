@@ -1,11 +1,29 @@
-package tools.javafx_printsample
+package tools.javafx_printsample;
 
-import org.junit.Test;
+import javafx.print.Printer;
+import org.junit.*;
+
 import static org.junit.Assert.*;
 
 public class AppTest {
-    @Test public void testSomeLibraryMethod() {
-//        Library classUnderTest = new Library();
-//        assertTrue("someLibraryMethod should return 'true'", classUnderTest.someLibraryMethod());
+    @BeforeClass
+    public static void beforeClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void afterClass() throws Exception {
+    }
+
+    @Before
+    public void before() throws Exception {
+    }
+
+    @After
+    public void after() throws Exception {
+    }
+
+    @Test
+    public void testSomeLibraryMethod() {
+
     }
 }
