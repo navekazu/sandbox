@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tools.javafx_printsample.MainController">
+   <top>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+          <Button fx:id="defaultPrinterButton" mnemonicParsing="false" onAction="#handleDefaultPrinterButtonAction" text="DefaultPrinter" />
+            <Button fx:id="allPrintersButton" mnemonicParsing="false" onAction="#handleAllPrintersButtonAction" text="AllPrinters" />
+            <Button fx:id="printButton" mnemonicParsing="false" onAction="#handlePrintButtonAction" text="Print" />
+            <Separator orientation="VERTICAL" />
+            <Label text="Copies" />
+            <TextField fx:id="copiesField" alignment="CENTER_RIGHT" prefWidth="50.0" text="1" />
+        </items>
+      </ToolBar>
+   </top>
+   <bottom>
+      <TextArea fx:id="logArea" prefHeight="100.0" promptText="Log area" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <AnchorPane fx:id="printCanvas" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Hello JavaFX Print." />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
