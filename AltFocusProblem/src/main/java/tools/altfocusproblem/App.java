@@ -3,6 +3,7 @@ package tools.altfocusproblem;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
@@ -10,7 +11,10 @@ import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-public class App extends Application {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class App extends Application implements Initializable {
     @FXML
     private MenuBar menuBar;
 
@@ -23,9 +27,11 @@ public class App extends Application {
 
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("DBComparator2");
+        primaryStage.setTitle("Alt Focus Problem");
         primaryStage.setScene(scene);
 
+
+//        setUserAgentStylesheet(STYLESHEET_CASPIAN);
         primaryStage.show();
     }
 
@@ -47,5 +53,12 @@ public class App extends Application {
     }
     public static void main( String[] args ) {
         Application.launch(App.class, args);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+//        menuBar.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+//            System.out.println("KEY_PRESSED");
+//        });
     }
 }

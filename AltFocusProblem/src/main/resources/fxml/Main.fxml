@@ -4,10 +4,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" onKeyTyped="#onKeyTyped" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tools.altfocusproblem.App">
    <children>
-      <MenuBar>
+      <MenuBar fx:id="menuBar" onKeyPressed="#onKeyPressed" onKeyReleased="#onKeyReleased" onKeyTyped="#onKeyTyped">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
