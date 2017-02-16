@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
@@ -41,15 +42,35 @@ public class App extends Application implements Initializable {
     }
     @FXML
     private void onKeyPressed(KeyEvent event) {
+        // Alt単体が押された場合は、そのイベントを無効にする
         System.out.println("onKeyPressed source:"+event.getSource());
+//        System.out.println("onKeyPressed event.toString():"+event.toString());
+//        System.out.println("onKeyPressed event.getCharacter():"+event.getCharacter());
+//        System.out.println("onKeyPressed event.getCode():"+event.getCode());
+        if (event.getCode()== KeyCode.ALT &&
+                event.isAltDown() &&
+                !event.isControlDown() &&
+                !event.isMetaDown() &&
+                !event.isShiftDown() &&
+                !event.isShortcutDown()
+                ) {
+            event.consume();
+        }
     }
     @FXML
     private void onKeyReleased(KeyEvent event) {
-        System.out.println("onKeyReleased source:"+event.getSource());
+//        System.out.println("onKeyReleased source:"+event.getSource());
+//        System.out.println("onKeyReleased menuBar.isFocused():"+menuBar.isFocused());
+//        if (menuBar.isFocused()) {
+//            menuBar.setFocusTraversable(false);
+//            menuBar.setFocusTraversable(true);
+//        } else {
+//            menuBar.requestFocus();
+//        }
     }
     @FXML
     private void onKeyTyped(KeyEvent event) {
-        System.out.println("onKeyTyped source:"+event.getSource());
+//        System.out.println("onKeyTyped source:"+event.getSource());
     }
     public static void main( String[] args ) {
         Application.launch(App.class, args);
