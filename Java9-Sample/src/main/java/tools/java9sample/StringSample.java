@@ -1,5 +1,7 @@
 package tools.java9sample;
 
+import java.util.stream.IntStream;
+
 public class StringSample {
     public static void main(String[] args) {
         StringSample ss = new StringSample();
@@ -7,14 +9,14 @@ public class StringSample {
     }
 
     private void stringReplaceSpeedTest() {
-        String sample = "";
-        for (int i = 0; i < 10000; i++) {
-            sample += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        }
-        long s = System.currentTimeMillis();
+        StringBuilder builder = new StringBuilder();
+        IntStream.range(0, 10000).forEach(i -> builder.append("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+
+        String sample = builder.toString();;
+        long start = System.currentTimeMillis();
         String result = sample.replace("ABC", "CCC");
-        long e = System.currentTimeMillis();
-        System.out.println(e-s);
-        System.out.println(result.substring(0, 30));
+        long end = System.currentTimeMillis();
+        System.out.println(end-start);
+        System.out.println(result.length() + " " + result.substring(0, 30));
     }
 }
