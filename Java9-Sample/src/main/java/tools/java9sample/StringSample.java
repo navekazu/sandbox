@@ -12,7 +12,7 @@ public class StringSample {
         StringBuilder builder = new StringBuilder();
         IntStream.range(0, 10000).forEach(i -> builder.append("ABCDEFGHIJKLMNOPQRSTUVWXYZ"));
 
-        String sample = builder.toString();;
+        String sample = builder.toString();
         long start = System.currentTimeMillis();
         String result = sample.replace("ABC", "CCC");
         long end = System.currentTimeMillis();
