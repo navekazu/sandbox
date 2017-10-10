@@ -13,9 +13,9 @@ public class TryWithResources {
         try (Resource r2 = r1) {
         }
 
-        Resource r3 = new Resource();
-        try (r3) {
-        }
+//        Resource r3 = new Resource();
+//        try (r3) {
+//        }
 
 //        try (Resource r1 = new Resource()) {
 //        }
