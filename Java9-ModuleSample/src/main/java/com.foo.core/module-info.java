@@ -1,2 +1,0 @@
-module com.foo.core {
-}

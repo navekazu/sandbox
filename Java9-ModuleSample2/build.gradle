@@ -11,18 +11,6 @@ apply plugin: 'java-library'
 sourceCompatibility = 9
 targetCompatibility = 9
 
-ext.moduleName = 'foo.core' 
-
-compileJava {
-    inputs.property("moduleName", moduleName)
-    doFirst {
-        options.compilerArgs = [
-            '--module-path', classpath.asPath,
-        ]
-        classpath = files()  
-    }
-}
-
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use jcenter for resolving your dependencies.
@@ -35,7 +23,7 @@ dependencies {
     api 'org.apache.commons:commons-math3:3.6.1'
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation 'com.google.guava:guava:22.0'
+    implementation 'com.google.guava:guava:21.0'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
