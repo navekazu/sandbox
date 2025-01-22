@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web-usb-sample-service:
+    container_name: web-usb-sample
+    image: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./contents:/usr/share/nginx/html:ro

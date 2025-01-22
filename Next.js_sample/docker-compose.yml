@@ -1,0 +1,19 @@
+version: '3'
+services:
+  build-project:
+    container_name: learn-nextjs-build-project
+    build: ./
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/nextjs
+    command: npx create-next-app@latest nextjs-dashboard --example "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example" --use-pnpm
+
+  nextjs-dashboard:
+    container_name: learn-nextjs-dashboard
+    build: ./
+    ports:
+      - 3000:3000
+    volumes:
+      - ./nextjs-dashboard:/nextjs
+    command: pnpm dev
